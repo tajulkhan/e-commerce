@@ -3,6 +3,7 @@
 import Navbar from "@/app/components/Navbar";
 import { notFound } from "next/navigation"; // Correct import for notFound
 import { useParams } from "next/navigation"; // Correct import for dynamic params
+import { useState } from "react";
 
 // Static product data
 const products = [
@@ -30,6 +31,8 @@ const products = [
 ];
 
 export default function ProductDetail() {
+  const [quantity, setQuantity] = useState(1);
+
   const { id } = useParams(); // Get dynamic `id` from URL
 
   // Ensure `id` is a valid string and convert to a number
@@ -63,6 +66,24 @@ export default function ProductDetail() {
             <p className="text-lg font-semibold mt-2">
               Rs. {product.price.toFixed(2)} / 250g
             </p>
+            <div className="mt-4 flex items-center">
+              <button
+                onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
+                className="bg-gray-200 text-gray-800 px-3 py-1 rounded"
+              >
+                -
+              </button>
+              <span className="mx-4">{quantity}</span>
+              <button
+                onClick={() => setQuantity((prev) => prev + 1)}
+                className="bg-gray-200 text-gray-800 px-3 py-1 rounded"
+              >
+                +
+              </button>
+            </div>
+            <button className="mt-4 bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
