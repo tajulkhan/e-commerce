@@ -1,6 +1,7 @@
 // src/app/page.tsx (Product List Page)
 
 import Link from 'next/link';
+import Navbar from './components/Navbar';
 
 // Static product data
 const products = [
@@ -26,6 +27,8 @@ const products = [
 
 export default function Home() {
   return (
+    <>
+    <Navbar/>
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-6">Fresh Fish Collection</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -48,5 +51,6 @@ export default function Home() {
         ))}
       </div>
     </div>
+    </>
   );
 }
